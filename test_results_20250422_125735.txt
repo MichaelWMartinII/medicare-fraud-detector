@@ -1,0 +1,39 @@
+Merged claims total: 857,563 rows
+Core features done in 0.29 sec
+Rule flagging done in 8.61 sec
+
+Rule Breakdown:
+  > 0-day high pay: 4120
+  > Duplicate CLM_ID: 22086
+  > Flagged total: {'N': 831394, 'Y': 26169}
+
+Rule-based Evaluation Metrics:
+              precision    recall  f1-score   support
+
+      Normal       1.00      1.00      1.00    831394
+     Flagged       1.00      1.00      1.00     26169
+
+    accuracy                           1.00    857563
+   macro avg       1.00      1.00      1.00    857563
+weighted avg       1.00      1.00      1.00    857563
+
+
+Isolation Forest Evaluation Metrics:
+              precision    recall  f1-score   support
+
+      Normal       0.97      1.00      0.98    831394
+     Flagged       0.53      0.16      0.24     26169
+
+    accuracy                           0.97    857563
+   macro avg       0.75      0.58      0.61    857563
+weighted avg       0.96      0.97      0.96    857563
+
+
+GPT Summary of Isolation Forest Evaluation:
+- The model correctly identified 97% of normal (non-fraudulent) Medicare claims. This means it is very good at recognizing legitimate claims.
+- However, the model only correctly identified 53% of fraudulent claims, and only flagged 16% of the actual fraudulent cases. This means it is not very effective at catching fraud.
+- Overall, the model was accurate for 97% of the total claims it processed. This high accuracy is largely due to the model's ability to correctly identify normal claims, which are much more common than fraudulent ones.
+
+Saved results to 'flagged_claims_summary.csv'
+Processed 857,563 claims.
+Rule-flagged: {'N': 831394, 'Y': 26169}
