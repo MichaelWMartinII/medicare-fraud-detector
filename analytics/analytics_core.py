@@ -24,12 +24,12 @@ def flag_rules_with_progress(df):
 
     tqdm.pandas(desc="⛏️ Flagging Rules")
 
-    # Refined: Flag extremely high-cost 0-day stays
+    # Flag extremely high-cost 0-day stays
     df["RULE_ZERO_DAYS_HIGH_PAY"] = df.progress_apply(
         lambda row: (row["LENGTH_OF_STAY"] == 0) and (row["CLM_PMT_AMT"] > 25000), axis=1
     )
 
-    # ✅ Fix: Use CLAIM_UID to avoid synthetic ID collision
+    # Use CLAIM_UID to avoid synthetic ID collision
     df["RULE_DUPLICATE_CLAIM_ID"] = df.duplicated(subset=["CLAIM_UID"], keep=False)
 
     # Apply combined rule flag

@@ -58,7 +58,7 @@ def merge_claims_with_beneficiaries(inpatient_df, outpatient_df, beneficiary_df)
     claims_df = pd.concat([inpatient_df, outpatient_df], ignore_index=True)
     claims_df["CLAIM_UID"] = claims_df["CLAIM_TYPE"].str.upper() + "_" + claims_df["CLM_ID"].astype(str)
 
-    # ✅ Fix: Keep only one beneficiary row per DESYNPUF_ID (latest or first)
+    # Keep only one beneficiary row per DESYNPUF_ID (latest or first)
     beneficiary_df = beneficiary_df.sort_values("BENE_BIRTH_DT")  # optional: prefer oldest data
     beneficiary_df = beneficiary_df.drop_duplicates(subset="DESYNPUF_ID", keep="first")
 
